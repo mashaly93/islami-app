@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:islami/SuraModel.dart';
+
+import 'SuraDetails.dart';
+import 'package:flutter/services.dart';
 
 class QuranScreen extends StatefulWidget {
   @override
   State<QuranScreen> createState() => _QuranScreenState();
 }
+
 
 class _QuranScreenState extends State<QuranScreen> {
   List<String> SuraNames = [
@@ -154,7 +159,10 @@ class _QuranScreenState extends State<QuranScreen> {
                 child: ListView.separated(
                   itemBuilder: (context, index) {
                     return Center(
-                      child: InkWell(onTap: () {
+                      child: InkWell(onTap: () async {
+                        Navigator.pushNamed(context,
+                            Suradetails.routeName,arguments: Suramodel(SuraNames[index], index));
+
                         setState(() {
 
                         });

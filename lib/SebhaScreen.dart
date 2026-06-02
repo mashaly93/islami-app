@@ -66,7 +66,9 @@ class _SebhascreenState extends State<Sebhascreen> {
                   ),
                 ),
               ),
-            ),          ],
+            ),
+            Text('$finish')
+          ],
         ),
       ),
     );
@@ -76,19 +78,27 @@ class _SebhascreenState extends State<Sebhascreen> {
   int record=0;
 
   String zikr= 'سبحان الله';
+  String finish= '';
 
   void OnbuttomClicked() {
     record += 1;
+    finish='';
     if (zikr == 'سبحان الله' && record == 33) {
       zikr = 'الحمد لله';
       record = 0;
     } else if (zikr == 'الحمد لله' && record == 33) {
       zikr = 'الله أكبر';
       record = 0;
+
     }
     else if (zikr == 'الله أكبر' && record == 33) {
+
       zikr = 'سبحان الله';
       record = 0;
+      finish ='لا إله إلا الله وحده لاشريك له له الملك وله الحمد وهو على كل شئ قدير';
+
     }
+
   }
+
 }

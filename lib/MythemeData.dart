@@ -6,6 +6,7 @@ class Mythemedata {
   static ThemeData lightMode = ThemeData(
     navigationBarTheme: NavigationBarThemeData(
       indicatorColor: Colors.black,
+
       backgroundColor: primary,),
     textTheme: TextTheme(
 

@@ -11,6 +11,7 @@ class QuranScreen extends StatefulWidget {
 
 
 class _QuranScreenState extends State<QuranScreen> {
+  final ScrollController controller = ScrollController();
   List<String> SuraNames = [
     "الفاتحه",
     "البقرة",
@@ -156,30 +157,33 @@ class _QuranScreenState extends State<QuranScreen> {
               ),
               const Divider(thickness: 2, color: Colors.brown),
               Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Center(
-                      child: InkWell(onTap: () async {
-                        Navigator.pushNamed(context,
-                            Suradetails.routeName,arguments: Suramodel(SuraNames[index], index));
-
-                        setState(() {
-
-                        });
-                      },
-                        child: Text(
-                          SuraNames[index],
-                          style: TextStyle(
-                            fontSize: 15,
-
+                child: Scrollbar(thumbVisibility: true,
+                  controller: controller,
+                  child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return Center(
+                        child: InkWell(onTap: () async {
+                          Navigator.pushNamed(context,
+                              Suradetails.routeName,arguments: Suramodel(SuraNames[index], index));
+                  
+                          setState(() {
+                  
+                          });
+                        },
+                          child: Text(
+                            SuraNames[index],
+                            style: TextStyle(
+                              fontSize: 15,
+                  
+                            ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    },
+                    itemCount: SuraNames.length, separatorBuilder: (BuildContext context, int index) {
+                      return Divider(height: 1,endIndent: 150,indent: 150,thickness: 1,color: Colors.black,);
                   },
-                  itemCount: SuraNames.length, separatorBuilder: (BuildContext context, int index) {
-                    return Divider(height: 1,endIndent: 150,indent: 150,thickness: 1,color: Colors.black,);
-                },
+                  ),
                 ),
               ),
             ],

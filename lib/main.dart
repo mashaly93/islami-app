@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami/HadeethDetails.dart';
 import 'package:islami/Homescree.dart';
 import 'package:islami/SuraDetails.dart';
 
 
 void main() {
   runApp(
-    MaterialApp(
-      theme:ThemeData.light(),
+    MaterialApp(scrollBehavior: MaterialScrollBehavior(),
+      theme: ThemeData.light(),
 
       debugShowCheckedModeBanner: false,
       initialRoute: HomeScreen.routeName,
@@ -16,8 +17,13 @@ void main() {
           return HomeScreen();
         },
         Suradetails.routeName: (context) {
-          return  Suradetails();
+          return Suradetails();
         },
+        Hadeethdetails.routeName: (context) {
+          return Hadeethdetails();
+        }
+        ,
+
       }
       ,
       darkTheme: ThemeData.dark(),

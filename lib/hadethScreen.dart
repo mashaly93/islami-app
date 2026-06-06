@@ -5,6 +5,8 @@ import 'package:islami/HadeethDetails.dart';
 import 'package:islami/HadeethModel.dart';
 import 'package:islami/MythemeData.dart';
 
+import 'l10n/app_localizations.dart';
+
 class Hadethscreen extends StatefulWidget {
   @override
   State<Hadethscreen> createState() => _HadethscreenState();
@@ -33,7 +35,7 @@ class _HadethscreenState extends State<Hadethscreen> {
             children: [
               SizedBox(height: 20),
               Text(
-                'إسلامي',
+                AppLocalizations.of(context)!.islami,
                 style: GoogleFonts.elMessiri(
                   fontSize: 25,
                   color: Colors.black,
@@ -43,7 +45,7 @@ class _HadethscreenState extends State<Hadethscreen> {
               Image.asset('assets/images/hadeth_logo.png'),
               Divider(thickness: 2, color: Mythemedata.primary),
               Text(
-                'الأحاديث',
+                AppLocalizations.of(context)!.ahadeeth,
                 style: GoogleFonts.elMessiri(
                   fontSize: 25,
                   color: Colors.black,

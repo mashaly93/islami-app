@@ -3,11 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/HadeethDetails.dart';
 import 'package:islami/Homescree.dart';
 import 'package:islami/SuraDetails.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
+
+
 
 
 void main() {
   runApp(
-    MaterialApp(scrollBehavior: MaterialScrollBehavior(),
+    MaterialApp( locale: Locale('ar'),
+      title: 'Localizations Sample App',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      scrollBehavior: MaterialScrollBehavior(),
       theme: ThemeData.light(),
 
       debugShowCheckedModeBanner: false,

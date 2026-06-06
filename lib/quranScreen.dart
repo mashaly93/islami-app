@@ -4,6 +4,8 @@ import 'package:islami/SuraModel.dart';
 import 'SuraDetails.dart';
 import 'package:flutter/services.dart';
 
+import 'l10n/app_localizations.dart';
+
 class QuranScreen extends StatefulWidget {
   @override
   State<QuranScreen> createState() => _QuranScreenState();
@@ -143,7 +145,7 @@ class _QuranScreenState extends State<QuranScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              Text('إسلامي', style: Theme.of(context).textTheme.bodyLarge),
+              Text(AppLocalizations.of(context)!.islami, style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 20),
 
               Image.asset('assets/images/quran_image.png', height: 120),
@@ -152,7 +154,7 @@ class _QuranScreenState extends State<QuranScreen> {
 
               Divider(thickness: 2, color: Colors.brown),
               Text(
-                'Sura Names',
+                AppLocalizations.of(context)!.suraNames,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const Divider(thickness: 2, color: Colors.brown),

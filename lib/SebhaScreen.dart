@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami/provider.dart';
+import 'package:provider/provider.dart';
 
 class Sebhascreen extends StatefulWidget {
   @override
@@ -9,12 +11,14 @@ class Sebhascreen extends StatefulWidget {
 class _SebhascreenState extends State<Sebhascreen> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Myprovider>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
+            image: AssetImage(provider.mode == ThemeMode.light? 'assets/images/background.png':
+            'assets/images/dark_bg.png'),
             fit: BoxFit.fill,
           ),
         ),

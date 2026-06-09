@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/HadeethDetails.dart';
 import 'package:islami/HadeethModel.dart';
 import 'package:islami/MythemeData.dart';
+import 'package:islami/provider.dart';
+import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
 
@@ -20,13 +22,15 @@ class _HadethscreenState extends State<Hadethscreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Myprovider>(context);
     LoadHadeeth();
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
+            image: AssetImage(provider.mode == ThemeMode.light? 'assets/images/background.png':
+            'assets/images/dark_bg.png'),
             fit: BoxFit.fill,
           ),
         ),
@@ -38,7 +42,7 @@ class _HadethscreenState extends State<Hadethscreen> {
                 AppLocalizations.of(context)!.islami,
                 style: GoogleFonts.elMessiri(
                   fontSize: 25,
-                  color: Colors.black,
+                  color: provider.mode == ThemeMode.light?Colors.black:Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -48,7 +52,7 @@ class _HadethscreenState extends State<Hadethscreen> {
                 AppLocalizations.of(context)!.ahadeeth,
                 style: GoogleFonts.elMessiri(
                   fontSize: 25,
-                  color: Colors.black,
+                  color: provider.mode == ThemeMode.light?Colors.black:Colors.white,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -72,7 +76,7 @@ class _HadethscreenState extends State<Hadethscreen> {
                             allahadeeth[index].name,
                             style: GoogleFonts.elMessiri(
                               fontSize: 15,
-                              color: Colors.black,
+                              color: provider.mode == ThemeMode.light?Colors.black:Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

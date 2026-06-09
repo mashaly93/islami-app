@@ -4,6 +4,8 @@ import 'package:islami/RadioScreen.dart';
 import 'package:islami/SebhaScreen.dart';
 import 'package:islami/SettingScreen.dart';
 import 'package:islami/hadethScreen.dart';
+import 'package:islami/provider.dart';
+import 'package:provider/provider.dart';
 
 import 'quranScreen.dart';
 
@@ -19,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Myprovider>(context);
     List<Widget> tabs = [
       Radioscreen(),
       Sebhascreen(),
@@ -30,12 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: tabs[index],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Mythemedata.primary,
+        backgroundColor:  provider.mode == ThemeMode.light?Color(0XFFB7935F):Color(0xFF13192d),
 
 
 
         showSelectedLabels: true,
-        selectedItemColor: Colors.black,
+        selectedItemColor: provider.mode == ThemeMode.light?Colors.black:Colors.white,
 
 
         currentIndex: index,

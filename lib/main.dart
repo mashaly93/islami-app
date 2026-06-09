@@ -4,19 +4,35 @@ import 'package:islami/HadeethDetails.dart';
 import 'package:islami/Homescree.dart';
 import 'package:islami/SuraDetails.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:islami/provider.dart';
+import 'package:provider/provider.dart';
 import 'l10n/app_localizations.dart';
 
 
 
 
 void main() {
+
   runApp(
-    MaterialApp( locale: Locale('ar'),
+    ChangeNotifierProvider(
+      create: (context) => Myprovider(),
+      child: Myapp(),
+    ),
+  );
+}
+class Myapp extends StatelessWidget {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    var provider = Provider.of<Myprovider>(context);
+    return MaterialApp( locale: Locale(provider.local),
       title: 'Localizations Sample App',
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       scrollBehavior: MaterialScrollBehavior(),
-      theme: ThemeData.light(),
+      themeMode: provider.mode,
 
       debugShowCheckedModeBanner: false,
       initialRoute: HomeScreen.routeName,
@@ -35,6 +51,7 @@ void main() {
       }
       ,
       darkTheme: ThemeData.dark(),
-    ),
-  );
+    );
+  }
 }
+

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/SuraModel.dart';
+import 'package:islami/provider.dart';
+import 'package:provider/provider.dart';
 
 import 'SuraDetails.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +13,6 @@ class QuranScreen extends StatefulWidget {
   @override
   State<QuranScreen> createState() => _QuranScreenState();
 }
-
 
 class _QuranScreenState extends State<QuranScreen> {
   final ScrollController controller = ScrollController();
@@ -133,19 +135,31 @@ class _QuranScreenState extends State<QuranScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Myprovider>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
+            image: AssetImage(
+              provider.mode == ThemeMode.light
+                  ? 'assets/images/background.png'
+                  : 'assets/images/dark_bg.png',
+            ),
             fit: BoxFit.fill,
           ),
         ),
         child: SafeArea(
           child: Column(
             children: [
-              Text(AppLocalizations.of(context)!.islami, style: Theme.of(context).textTheme.bodyLarge),
+              Text(
+                AppLocalizations.of(context)!.islami,
+                style:  GoogleFonts.elMessiri(
+                  fontSize: 25,
+                  color: provider.mode == ThemeMode.light?Colors.black:Colors.white,
+                  fontWeight: FontWeight.bold,
+              ),
+              ),
               const SizedBox(height: 20),
 
               Image.asset('assets/images/quran_image.png', height: 120),
@@ -159,32 +173,42 @@ class _QuranScreenState extends State<QuranScreen> {
               ),
               const Divider(thickness: 2, color: Colors.brown),
               Expanded(
-                child: Scrollbar(thumbVisibility: true,
+                child: Scrollbar(
+                  thumbVisibility: true,
                   controller: controller,
                   child: ListView.separated(
                     itemBuilder: (context, index) {
                       return Center(
-                        child: InkWell(onTap: () async {
-                          Navigator.pushNamed(context,
-                              Suradetails.routeName,arguments: Suramodel(SuraNames[index], index));
-                  
-                          setState(() {
-                  
-                          });
-                        },
+                        child: InkWell(
+                          onTap: () async {
+                            Navigator.pushNamed(
+                              context,
+                              Suradetails.routeName,
+                              arguments: Suramodel(SuraNames[index], index),
+                            );
+
+                            setState(() {});
+                          },
                           child: Text(
                             SuraNames[index],
-                            style: TextStyle(
-                              fontSize: 15,
-                  
-                            ),
+                            style:  GoogleFonts.elMessiri(
+                            fontSize: 15,
+                            color: provider.mode == ThemeMode.light?Colors.black:Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
+                      ));
+                    },
+                    itemCount: SuraNames.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Divider(
+                        height: 1,
+                        endIndent: 150,
+                        indent: 150,
+                        thickness: 1,
+                        color: Colors.black,
                       );
                     },
-                    itemCount: SuraNames.length, separatorBuilder: (BuildContext context, int index) {
-                      return Divider(height: 1,endIndent: 150,indent: 150,thickness: 1,color: Colors.black,);
-                  },
                   ),
                 ),
               ),
